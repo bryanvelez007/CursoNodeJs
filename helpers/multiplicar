@@ -1,0 +1,39 @@
+const { rejects } = require("assert");
+const fs = require("fs");
+const colors = require('colors');
+
+let salida = "";
+
+const createFile = async (base, list = false,hasta=10) => {
+  for (var x = 1; x <= hasta; x++) {
+    salida += `${base} X ${x} = ${base * x} \n`;
+  }
+  fs.writeFileSync(`table-${base}.txt`, salida);
+  if (salida) {
+    if (list) {
+      console.log(salida + "\n");
+    }
+    return `el archivo table-${base}.txt fue creado correctamente`;
+  }
+};
+
+module.exports = {
+  createFile,
+};
+
+/*
+
+const createFile = (base) => {
+  return new Promise((resolve, rejects) => {
+
+    for (var x = 1; x <= 10; x++) {
+      salida += `${base} X ${x} = ${base * x} \n`;
+    }
+    fs.writeFileSync(`table-${base}.txt`, salida);
+    (salida) 
+     ? resolve(`el archivo table-${base}.txt fue creado correctamente`)
+     :  rejects("ERROR!");
+     
+    
+  });
+};*/
